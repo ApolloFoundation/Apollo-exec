@@ -3,9 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <properties>
+    <apl-desktop.version>1.43.1</apl-desktop.version>
+    <apl-tools.version>1.43.1</apl-tools.version>
+  </properties>
+
   <parent>
     <groupId>com.apollocurrency</groupId>
-    <artifactId>apollo-wallet</artifactId>
+    <artifactId>apollo-exec</artifactId>
     <version>1.43.1</version>
   </parent>
 
@@ -17,17 +22,14 @@
     <dependency>
       <groupId>com.apollocurrency</groupId>
       <artifactId>apl-utils</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.apollocurrency</groupId>
       <artifactId>apl-core</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.apollocurrency</groupId>
       <artifactId>apl-updater</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.apollocurrency</groupId>
@@ -37,12 +39,7 @@
     <dependency>
       <groupId>com.apollocurrency</groupId>
       <artifactId>apl-desktop</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.apollocurrency</groupId>
-      <artifactId>apl-tools</artifactId>
-      <version>${project.version}</version>
+      <version>${apl-desktop.version}</version>
     </dependency>
     <dependency>
       <groupId>com.apollocurrency</groupId>

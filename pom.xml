@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.apollocurrency</groupId>
+  <artifactId>apollo-exec</artifactId>
+  <version>1.43.1</version>
+  <packaging>pom</packaging>
+  <name>Apollo wallet</name>
+
+  <organization>
+    <name>Apollo Foundation</name>
+    <url>https://www.apollocurrency.com/</url>
+  </organization>
+  <repositories>
+    <!-- arti.firstbridge.work does not chache in apl repo so we have to add Maven Central here -->
+    <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>https://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <!--   arti.firstbridge.work for follwing artifacts: web-wallet, fbcrypto -->
+    <repository>
+      <id>apl</id>
+      <name>arti.firstbridge.work-releases</name>
+      <url>https://arti.firstbridge.work/artifactory/apl</url>
+    </repository>
+    <repository>
+      <id>aplsys</id>
+      <name>Artifactory APLSYS</name>
+      <layout>default</layout>
+      <url>https://arti.firstbridge.work/artifactory/aplsys</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <modules>
+    <module>apl-conf</module>
+    <module>apl-exec</module>
+    <module>apl-html</module>
+  </modules>
+
+  <properties>
+    <artifact.basedir>${project.basedir}</artifact.basedir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+    <java.version>11</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <!-- cross-platform zip distribution -->
+    <zipname>apollo-wallet</zipname>
+    <!--Dependency Versions-->
+    <web-wallet.version>2.6.2</web-wallet.version>
+    <!--Dependency Versions-->
+    <surefire-plugin.version>2.22.2</surefire-plugin.version>
+    <compile-plugin.version>3.8.1</compile-plugin.version>
+    <apl-bom.version>1.43.1</apl-bom.version>
+  </properties>
+
+  <!-- We have following profiles: prod, dev, debug
+       1. prod: profile for release with build of all zips and sha-256 sums
+       2. dev:  profile for development, no extra build artefacts, faster builds for developers
+  -->
+
+  <profiles>
+    <!-- The Configuration of the development profile -->
+    <profile>
+      <id>dev</id>
+      <activation>
+        <property>
+          <name>develop</name>
+        </property>
+      </activation>
+      <properties>
+        <zipExecutionPhase>none</zipExecutionPhase>
+        <skipIntergationTests>true</skipIntergationTests>
+      </properties>
+    </profile>
+    <!-- The Configuration of the production profile -->
+    <profile>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <property>
+          <name>production</name>
+        </property>
+      </activation>
+      <properties>
+        <zipExecutionPhase>package</zipExecutionPhase>
+        <skipIntergationTests>true</skipIntergationTests>
+      </properties>
+    </profile>
+  </profiles>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.apollocurrency</groupId>
+        <artifactId>apl-bom</artifactId>
+        <version>${apl-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire-plugin.version}</version>
+          <configuration>
+            <useSystemClassLoader>false</useSystemClassLoader>
+          </configuration>
+          <dependencies>
+            <!--
+                                    JDK 11
+                                    <dependency>
+                                        <groupId>org.ow2.asm</groupId>
+                                        <artifactId>asm</artifactId>
+                                        <version>6.2</version>
+                                    </dependency>
+            -->
+            <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-webdav-jackrabbit</artifactId>
+              <version>1.0-beta-6</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>org.slf4j</groupId>
+                  <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compile-plugin.version}</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <forceJavacCompilerUse>true</forceJavacCompilerUse>
+          </configuration>
+        </plugin>
+        <!-- Maven Assembly Plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>exec-maven-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <version>1.6.0</version>
+        <inherited>false</inherited>
+        <!--<executions>
+           <execution>
+               <id>Version Calculation</id>
+               <phase>validate</phase>
+               <goals>
+                   <goal>exec</goal>
+               </goals>
+               <configuration>
+                  <executable>${basedir}/git-sha-1.sh</executable>
+                </configuration>
+            </execution>
+        </executions>-->
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <showDeprecation>false</showDeprecation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

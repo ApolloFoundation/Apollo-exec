@@ -43,7 +43,6 @@
   <modules>
     <module>apl-conf</module>
     <module>apl-exec</module>
-    <module>apl-html</module>
   </modules>
 
   <properties>

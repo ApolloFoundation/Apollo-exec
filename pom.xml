@@ -56,8 +56,6 @@
     <!-- cross-platform zip distribution -->
     <zipname>apollo-wallet</zipname>
     <!--Dependency Versions-->
-    <web-wallet.version>2.6.2</web-wallet.version>
-    <!--Dependency Versions-->
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>
     <apl-bom.version>1.43.1</apl-bom.version>
@@ -211,37 +209,6 @@
           <showDeprecation>false</showDeprecation>
         </configuration>
       </plugin>
-
-      <!-- Maven Assembly Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <!-- get all project dependencies -->
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-
-          <!-- MainClass in mainfest make a executable jar -->
-          <archive>
-            <manifest>
-              <mainClass>com.apollocurrency.aplwallet.apl.exec.Apollo</mainClass>
-            </manifest>
-          </archive>
-
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <!-- bind to the packaging phase -->
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
     </plugins>
   </build>
 

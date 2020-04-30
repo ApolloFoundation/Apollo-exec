@@ -5,7 +5,7 @@
 
   <groupId>com.apollocurrency</groupId>
   <artifactId>apollo-exec</artifactId>
-  <version>1.43.1</version>
+  <version>1.43.3</version>
   <packaging>pom</packaging>
   <name>Apollo wallet</name>
 
@@ -57,7 +57,7 @@
     <!--Dependency Versions-->
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>
-    <apl-bom.version>1.43.1</apl-bom.version>
+    <apl-bom.version>1.43.3</apl-bom.version>
   </properties>
 
   <!-- We have following profiles: prod, dev, debug

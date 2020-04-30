@@ -136,7 +136,7 @@
                 <descriptor>src/assembly/zipdist.xml</descriptor>
               </descriptors>
               <appendAssemblyId>false</appendAssemblyId>
-              <finalName>${zipname}-${project.version}</finalName>
+              <finalName>${zipname}</finalName>
             </configuration>
           </execution>
           <execution>
@@ -150,7 +150,7 @@
                 <descriptor>src/assembly/zipdistlibs.xml</descriptor>
               </descriptors>
               <appendAssemblyId>false</appendAssemblyId>
-              <finalName>${zipname}-deps-${project.version}</finalName>
+              <finalName>${zipname}-ext-deps</finalName>
             </configuration>
           </execution>
         </executions>

@@ -53,7 +53,9 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <!-- cross-platform zip distribution -->
-    <zipname>apollo-wallet</zipname>
+    <zip-file-name>apollo-wallet</zip-file-name>
+    <ext-deps-zip-file-name>${zip-file-name}-ext-deps</ext-deps-zip-file-name>
+    <zip-format>zip</zip-format>
     <!--Dependency Versions-->
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>

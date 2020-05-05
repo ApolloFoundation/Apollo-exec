@@ -214,12 +214,6 @@
               <resource>META-INF/MANIFEST.MF</resource>
               <file>src/main/resources/META-INF/MANIFEST.MF</file>
             </transformer>
-            &lt;!&ndash; add Main-Class to manifest file &ndash;&gt;
-&lt;!&ndash;
-            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-              <mainClass>com.apollocurrency.aplwallet.apl.exec.Apollo</mainClass>
-            </transformer>
-&ndash;&gt;
           </transformers>
           <artifactSet>
             <excludes>
@@ -246,6 +240,7 @@
         </executions>
       </plugin>
 -->
+
     </plugins>
   </build>
 </project>

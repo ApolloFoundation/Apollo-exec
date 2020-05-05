@@ -71,14 +71,8 @@
     <!-- The Configuration of the development profile -->
     <profile>
       <id>dev</id>
-      <activation>
-        <property>
-          <name>develop</name>
-        </property>
-      </activation>
       <properties>
         <zipExecutionPhase>none</zipExecutionPhase>
-        <skipIntergationTests>true</skipIntergationTests>
       </properties>
     </profile>
     <!-- The Configuration of the production profile -->
@@ -86,13 +80,9 @@
       <id>prod</id>
       <activation>
         <activeByDefault>true</activeByDefault>
-        <property>
-          <name>production</name>
-        </property>
       </activation>
       <properties>
         <zipExecutionPhase>package</zipExecutionPhase>
-        <skipIntergationTests>true</skipIntergationTests>
       </properties>
     </profile>
   </profiles>
@@ -120,14 +110,6 @@
             <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
           <dependencies>
-            <!--
-                                    JDK 11
-                                    <dependency>
-                                        <groupId>org.ow2.asm</groupId>
-                                        <artifactId>asm</artifactId>
-                                        <version>6.2</version>
-                                    </dependency>
-            -->
             <dependency>
               <groupId>org.apache.maven.wagon</groupId>
               <artifactId>wagon-webdav-jackrabbit</artifactId>
@@ -178,6 +160,11 @@
           <version>3.1.2</version>
         </plugin>
         <plugin>
+          <groupId>net.nicoulaj.maven.plugins</groupId>
+          <artifactId>checksum-maven-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>3.2.3</version>
@@ -191,18 +178,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <version>1.6.0</version>
         <inherited>false</inherited>
-        <!--<executions>
-           <execution>
-               <id>Version Calculation</id>
-               <phase>validate</phase>
-               <goals>
-                   <goal>exec</goal>
-               </goals>
-               <configuration>
-                  <executable>${basedir}/git-sha-1.sh</executable>
-                </configuration>
-            </execution>
-        </executions>-->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

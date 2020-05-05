@@ -60,6 +60,8 @@
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>
     <apl-bom.version>1.43.3</apl-bom.version>
+    <!-- We have to define this property ancd change it accordingly for correct version of packages -->
+    <apl-bom-ext.version>1.0.0</apl-bom-ext.version>
   </properties>
 
   <!-- We have following profiles: prod, dev, debug
@@ -173,12 +175,6 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <artifactId>exec-maven-plugin</artifactId>
-        <groupId>org.codehaus.mojo</groupId>
-        <version>1.6.0</version>
-        <inherited>false</inherited>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>

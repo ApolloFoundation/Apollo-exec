@@ -7,7 +7,7 @@
   <artifactId>apollo-exec</artifactId>
   <version>1.43.3</version>
   <packaging>pom</packaging>
-  <name>Apollo wallet</name>
+  <name>Apollo blockchain</name>
 
   <organization>
     <name>Apollo Foundation</name>
@@ -53,13 +53,16 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <!-- cross-platform zip distribution -->
-    <zip-file-name>apollo-wallet</zip-file-name>
+    <zip-file-name>apollo-blockchain</zip-file-name>
     <ext-deps-zip-file-name>${zip-file-name}-ext-deps</ext-deps-zip-file-name>
     <zip-format>zip</zip-format>
     <!--Dependency Versions-->
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>
     <apl-bom.version>1.43.3</apl-bom.version>
+    <!-- We have to define this property ancd change it accordingly for correct version of packages -->
+    <apl-bom-ext.version>1.0.0</apl-bom-ext.version>
+    <base-dist-dir>apollo-wallet</base-dist-dir>
   </properties>
 
   <!-- We have following profiles: prod, dev, debug
@@ -71,14 +74,8 @@
     <!-- The Configuration of the development profile -->
     <profile>
       <id>dev</id>
-      <activation>
-        <property>
-          <name>develop</name>
-        </property>
-      </activation>
       <properties>
         <zipExecutionPhase>none</zipExecutionPhase>
-        <skipIntergationTests>true</skipIntergationTests>
       </properties>
     </profile>
     <!-- The Configuration of the production profile -->
@@ -86,13 +83,9 @@
       <id>prod</id>
       <activation>
         <activeByDefault>true</activeByDefault>
-        <property>
-          <name>production</name>
-        </property>
       </activation>
       <properties>
         <zipExecutionPhase>package</zipExecutionPhase>
-        <skipIntergationTests>true</skipIntergationTests>
       </properties>
     </profile>
   </profiles>
@@ -120,14 +113,6 @@
             <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
           <dependencies>
-            <!--
-                                    JDK 11
-                                    <dependency>
-                                        <groupId>org.ow2.asm</groupId>
-                                        <artifactId>asm</artifactId>
-                                        <version>6.2</version>
-                                    </dependency>
-            -->
             <dependency>
               <groupId>org.apache.maven.wagon</groupId>
               <artifactId>wagon-webdav-jackrabbit</artifactId>
@@ -178,6 +163,11 @@
           <version>3.1.2</version>
         </plugin>
         <plugin>
+          <groupId>net.nicoulaj.maven.plugins</groupId>
+          <artifactId>checksum-maven-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>3.2.3</version>
@@ -186,24 +176,6 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <artifactId>exec-maven-plugin</artifactId>
-        <groupId>org.codehaus.mojo</groupId>
-        <version>1.6.0</version>
-        <inherited>false</inherited>
-        <!--<executions>
-           <execution>
-               <id>Version Calculation</id>
-               <phase>validate</phase>
-               <goals>
-                   <goal>exec</goal>
-               </goals>
-               <configuration>
-                  <executable>${basedir}/git-sha-1.sh</executable>
-                </configuration>
-            </execution>
-        </executions>-->
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>

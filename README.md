@@ -62,7 +62,7 @@ mvnw -v
 ## Linux/MacOS
    * Clone repository using git command `git clone` or download archive file of source code
    * go to source directory
-   * run ___mvn install___ 
+   * run ___./mvnw clean install___ (or ___./mvnw clean install -P dev___ for skipping cross-platform zip distribution)
    * go to bin directory and run ___apl-run-desktop.sh___ 
    * application should start in desktop mode
    * if you require command line mode -> use ___apl-run.sh___ instead of ___apl-run-desktop.sh___
@@ -70,7 +70,7 @@ mvnw -v
 ## Windows
    * Clone repository using git command `git clone` or download archive file of source code
    * go to source directory
-   * run ___mvn install___ 
+   * run ___mvnw clean install___ (or ___mvnw clean install -P dev___ for skipping cross-platform zip distribution)
    * go to bin directory and run ___apl-run-desktop.bat___
    * application should start in desktop mode
    * if you require command line mode -> use ___apl-run.bat___ instead of ___apl-run-desktop.bat___

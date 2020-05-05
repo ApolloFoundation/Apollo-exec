@@ -90,7 +90,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -159,9 +158,9 @@
       <plugin>
         <groupId>net.nicoulaj.maven.plugins</groupId>
         <artifactId>checksum-maven-plugin</artifactId>
-        <version>1.8</version>
         <executions>
           <execution>
+            <phase>${zipExecutionPhase}</phase>
             <goals>
               <goal>files</goal>
             </goals>

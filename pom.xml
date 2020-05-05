@@ -7,7 +7,7 @@
   <artifactId>apollo-exec</artifactId>
   <version>1.43.3</version>
   <packaging>pom</packaging>
-  <name>Apollo wallet</name>
+  <name>Apollo blockchain</name>
 
   <organization>
     <name>Apollo Foundation</name>
@@ -53,7 +53,7 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <!-- cross-platform zip distribution -->
-    <zip-file-name>apollo-wallet</zip-file-name>
+    <zip-file-name>apollo-blockchain</zip-file-name>
     <ext-deps-zip-file-name>${zip-file-name}-ext-deps</ext-deps-zip-file-name>
     <zip-format>zip</zip-format>
     <!--Dependency Versions-->
@@ -62,6 +62,7 @@
     <apl-bom.version>1.43.3</apl-bom.version>
     <!-- We have to define this property ancd change it accordingly for correct version of packages -->
     <apl-bom-ext.version>1.0.0</apl-bom-ext.version>
+    <base-dist-dir>apollo-wallet</base-dist-dir>
   </properties>
 
   <!-- We have following profiles: prod, dev, debug

@@ -1,5 +1,5 @@
 {
-  name": "apl-exec",
+  "name": "apl-exec",
   "description": "Apollo blockchain backend",
   "version": "1.43.3",
   "dependencies": [

@@ -5,7 +5,7 @@
 
   <groupId>com.apollocurrency</groupId>
   <artifactId>apollo-exec</artifactId>
-  <version>1.43.3</version>
+  <version>1.44.0</version>
   <packaging>pom</packaging>
   <name>Apollo blockchain</name>
 
@@ -59,7 +59,7 @@
     <!--Dependency Versions-->
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <compile-plugin.version>3.8.1</compile-plugin.version>
-    <apl-bom.version>1.43.3</apl-bom.version>
+    <apl-bom.version>1.44.0</apl-bom.version>
     <!-- We have to define this property ancd change it accordingly for correct version of packages -->
     <apl-bom-ext.version>1.0.0</apl-bom-ext.version>
     <base-dist-dir>apollo-wallet</base-dist-dir>
